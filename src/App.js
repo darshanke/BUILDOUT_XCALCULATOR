@@ -33,7 +33,7 @@ function App() {
       try {
         const operators = ['+', '-', '*', '/'];
         
-        if (operators.includes(data.slice(-1))) {
+        if (data === "" || operators.includes(data.slice(-1))) {
           setshow(true);
           setdetails("Error");
         } else {
