@@ -31,19 +31,33 @@ function App() {
       setshow(false);
     } else if (value === "=") {
       try {
-        setshow(true);
-        setdetails(eval(data).toString()); 
+        const operators = ['+', '-', '*', '/'];
+        // If the last character is an operator, it's an incomplete expression
+        if (operators.includes(data.slice(-1))) {
+          setshow(true);
+          setData("Error");  // Set "Error" explicitly for incomplete expressions
+        } else {
+          const result = new Function('return ' + data)();
+          setshow(true);
+          setdetails(result.toString());
+        }
       } catch (error) {
         setData("Error");
       }
-    } else if(show){
+    } else if (show) {
       setshow(false);
-      setData(details+value);
-      
-    }else{
-      setData(data+ value)
+      if (details !== "Error" && details !== -Infinity && details !== Infinity) {
+        setData(details + value);
+      }
+    } else {
+      setData(data + value);
     }
-  }
+  };
+  
+  
+
+
+
   return (
     <div className="App">
       <h1>React Calculator</h1>
