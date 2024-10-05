@@ -32,10 +32,10 @@ function App() {
     } else if (value === "=") {
       try {
         const operators = ['+', '-', '*', '/'];
-        // If the last character is an operator, it's an incomplete expression
+        
         if (operators.includes(data.slice(-1))) {
           setshow(true);
-          setData("Error");  // Set "Error" explicitly for incomplete expressions
+          setdetails("Error");
         } else {
           const result = new Function('return ' + data)();
           setshow(true);
